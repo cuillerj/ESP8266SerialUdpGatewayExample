@@ -17,15 +17,10 @@ public class ESP8266SerialUdpGatewayExample {
     static InetAddress IPAddress = null;
 	public static void main(String args[]) throws Exception
 	{  
-		ipGateway=args[0];
-		System.out.println("SP8266SerialUdpGatewayExample");
-		try {
 
-		      IPAddress = InetAddress.getByName(ipGateway);
-		} catch (UnknownHostException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		System.out.println("SP8266SerialUdpGatewayExample");
+
+		System.out.println("Will anwser to UDP port:"+udpPort);
 	      DatagramSocket clientSocket = null;
 		try {
 			clientSocket = new DatagramSocket();
@@ -46,6 +41,9 @@ public class ESP8266SerialUdpGatewayExample {
 			DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
 			try {
 				serverSocket.receive(receivePacket);
+				InetAddress IPReceiveAddress = receivePacket.getAddress();
+				IPAddress=IPReceiveAddress;
+				System.out.println("Receive data from IP address:"+IPReceiveAddress);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -70,6 +68,7 @@ public class ESP8266SerialUdpGatewayExample {
 			 			DataToSend[1]=0x0d; // gpio number 13 (or 12) (gpio must be defined output in arduino) 
 			 			DataToSend[2]=(byte)(randomInt); // set randomly to 0 or 1
 			 			sendData = DataToSend;
+			 			System.out.println("Send Set GPIO "+randomInt);
 			 			break;
 			 		case 2:
 			 		    randomGenerator = new Random();
