@@ -11,7 +11,7 @@ public class ESP8266SerialUdpGatewayExample {
  *  If frame type 2 received it prints a received count and sends a frame containing this count and a random value
  */
 	public static String ipGateway="";  // 
-	public static int udpPort=1830;
+	public static int udpPort=1832;
 	static char[] TAB_BYTE_HEX = { '0', '1', '2', '3', '4', '5', '6','7',
         '8', '9', 'A', 'B', 'C', 'D', 'E','F' };
     static InetAddress IPAddress = null;
